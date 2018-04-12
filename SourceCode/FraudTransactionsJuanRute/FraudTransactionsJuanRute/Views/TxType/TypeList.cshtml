@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Model.EntityCode.TransactionType>
+
+
+<select class="form-control" id="IdTxTypeFK" name="IdTxTypeFK">
+
+    @foreach (var item in Model)
+    {
+
+        <option value="@item.IdType">@item.TransactionName</option>
+    }
+</select>

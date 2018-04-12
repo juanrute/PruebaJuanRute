@@ -10,10 +10,15 @@ namespace FraudTransactionsJuanRute.Controllers
 {
     public class TransactionController : Controller
     {
+        private readonly IFacade fc;
+
+        public TransactionController(IFacade _facade) {
+            this.fc = _facade;
+        }
+
         // GET: Transaction
         public ActionResult Index()
         {
-            Facade fc = new Facade();            
             return View(fc.GetAllTransactions());
         }
 
@@ -24,9 +29,25 @@ namespace FraudTransactionsJuanRute.Controllers
         [HttpPost]
         public ActionResult CreateTX(Transaction t)
         {
-            Facade fc = new Facade();
+            if (!ModelState.IsValid) {
+                return View();
+            }
             fc.SaveTransaction(t);
-            return View();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Details(int id) {
+            return View(fc.GetTransactionsById(id));
+        }
+
+        public ActionResult Edit(int id) {
+            return View(fc.GetTransactionsById(id));
+        }
+        [HttpPost]
+        public ActionResult Edit(Transaction t)
+        {
+            fc.ChangeTransactionState(t.Id);
+            return RedirectToAction("Index");
         }
     }
 }

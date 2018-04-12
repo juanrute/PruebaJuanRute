@@ -25,11 +25,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdTxTypeFK, "IdTxTypeFK", htmlAttributes: new { @class = "control-label col-md-2" })
-            @*<div class="col-md-10">
-                @Html.DropDownList("IdTxTypeFK", null, htmlAttributes: new { @class = "form-control" })
+            <label class="control-label col-md-2">Transaction Type</label>
+            <div class="col-md-10">
+                @Html.Action("TypeList","TxType")
                 @Html.ValidationMessageFor(model => model.IdTxTypeFK, "", new { @class = "text-danger" })
-            </div>*@
+            </div>
         </div>
 
         <div class="form-group">
@@ -85,24 +85,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NewBalanceDest, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NewBalanceDest, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TransactionDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TransactionDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TransactionDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsFraud, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsFraud)
-                    @Html.ValidationMessageFor(model => model.IsFraud, "", new { @class = "text-danger" })
-                </div>
             </div>
         </div>
 

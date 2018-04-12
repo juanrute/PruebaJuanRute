@@ -9,13 +9,14 @@ namespace Model
 {
     public class Facade : IFacade
     {
-        public int ChangeTransactionState(Transaction t)
+        public int ChangeTransactionState(int id)
         {
             try
             {
                 using (FinancialTXEntities db = new FinancialTXEntities())
                 {
-                    db.Transactions.Where(x => x.Id == t.Id).FirstOrDefault().IsFraud = !t.IsFraud ;
+                    Transaction temp = db.Transactions.Find(id);
+                    temp.IsFraud = !temp.IsFraud ;
                     db.SaveChanges();
                     return 0;
                 }
@@ -27,8 +28,16 @@ namespace Model
            
         }
 
+        public Transaction GetTransactionsById(int id) {
+            using (FinancialTXEntities db = new FinancialTXEntities())
+            {
+                return db.Transactions.Find(id);
+            }
+        }
+
         public List<Transaction> GetAllTransactions() {
-            using (FinancialTXEntities db=new FinancialTXEntities()) {
+            using (FinancialTXEntities db = new FinancialTXEntities())
+            {
                 return db.Transactions.ToList();
             }
         }
@@ -53,6 +62,7 @@ namespace Model
         {
             using (FinancialTXEntities db = new FinancialTXEntities())
             {
+                t.TransactionDate = DateTime.Now;
                 db.Transactions.Add(t);
                 db.SaveChanges();
                 return 0;
