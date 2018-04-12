@@ -12,7 +12,8 @@
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>Are you sure to change the state of the transaction </h4>
+    <h3>Mark transaction as a fraud </h3>
+    <h4>Are you sure to change the state of the transaction ?</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.Id)

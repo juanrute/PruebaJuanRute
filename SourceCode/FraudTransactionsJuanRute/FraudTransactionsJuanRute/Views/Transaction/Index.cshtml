@@ -10,7 +10,36 @@
 <p>
     @Html.ActionLink("Create New", "CreateTX")
 </p>
+
+<p>
+    @using (Html.BeginForm("FraudOnly", "Transaction", FormMethod.Get))
+    {
+    <input type="submit"  value="IsFraud" />
+    }
+</p>
+<p>
+    @using (Html.BeginForm("FilterName", "Transaction", FormMethod.Get))
+    {
+        <label>NameDest:</label>
+        @Html.TextBox("searching")
+        <input type="submit" value="Filter" />
+    }
+</p>
+@*<p>
+    @using (Html.BeginForm("FilterDate", "Transaction", FormMethod.Get))
+    {
+        <label>DateFrom:</label>
+        @Html.TextBox("DateFrom")
+
+        <label>DateTo:</label>
+        @Html.TextBox("DateTo")
+        <input type="submit" value="Filter" />
+    }
+</p>*@
+
 <table class="table">
+    
+
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Step)
@@ -33,41 +62,42 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Step)
-        </td>
-        <td>
-            @Html.Action("Name", "TxType", new { id = item.IdTxTypeFK })
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NameOrig)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TransactionDate)
-        </td>
-        <td>
-            
-            @{ 
-                if (item.IsFraud)
-                {
-                    <span>True</span>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Step)
+            </td>
+            <td>
+                @Html.Action("Name", "TxType", new { id = item.IdTxTypeFK })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameOrig)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionDate)
+            </td>
+            <td>
+
+                @{
+                    if (item.IsFraud)
+                    {
+                        <span>True</span>
+                    }
+                    else
+                    {
+                        <span>False</span>
+                    }
                 }
-                else {
-                    <span>False</span>
-                }
-            }
-        </td>
-        <td>
-            @Html.ActionLink("ChangeState", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) 
-        </td>
-    </tr>
-}
+            </td>
+            <td>
+                @Html.ActionLink("ChangeState", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

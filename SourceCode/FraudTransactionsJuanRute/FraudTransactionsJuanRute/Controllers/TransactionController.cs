@@ -49,5 +49,21 @@ namespace FraudTransactionsJuanRute.Controllers
             fc.ChangeTransactionState(t.Id);
             return RedirectToAction("Index");
         }
+
+        public ActionResult FilterName(string searching)
+        {
+            return View("Index",fc.SearchTxByNameDest(searching));
+        }
+
+        public ActionResult FraudOnly()
+        {
+            return View("Index", fc.SearchIsFraudTx());
+        }
+
+        public ActionResult FilterDate(string DateFrom, string DateTo)
+        {
+            return Content("fd");
+            return View("Index", fc.SearchByTxDate(DateTime.Now, DateTime.Now));
+        }
     }
 }

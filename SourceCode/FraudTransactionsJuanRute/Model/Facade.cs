@@ -89,7 +89,7 @@ namespace Model
         {
             using (FinancialTXEntities db = new FinancialTXEntities())
             {
-                return db.Transactions.Where(x => x.NameDest.Contains("name")).ToList();
+                return db.Transactions.Where(x => x.NameDest.Contains(name)).ToList();
             }
         }
     }
