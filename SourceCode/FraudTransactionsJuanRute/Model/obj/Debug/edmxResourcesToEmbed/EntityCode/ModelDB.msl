@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FinancialTXModelStoreContainer" CdmEntityContainer="FinancialTXEntities">
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="FinancialTXModel.Transaction">
+        <MappingFragment StoreEntitySet="Transactions">
+          <ScalarProperty Name="IsFraud" ColumnName="IsFraud" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="NewBalanceDest" ColumnName="NewBalanceDest" />
+          <ScalarProperty Name="OldBalanceDest" ColumnName="OldBalanceDest" />
+          <ScalarProperty Name="NameDest" ColumnName="NameDest" />
+          <ScalarProperty Name="NewbalanceOrig" ColumnName="NewbalanceOrig" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="OldbalanceOrg" ColumnName="OldbalanceOrg" />
+          <ScalarProperty Name="NameOrig" ColumnName="NameOrig" />
+          <ScalarProperty Name="IdTxTypeFK" ColumnName="IdTxTypeFK" />
+          <ScalarProperty Name="Step" ColumnName="Step" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionTypes">
+      <EntityTypeMapping TypeName="FinancialTXModel.TransactionType">
+        <MappingFragment StoreEntitySet="TransactionType">
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="TransactionName" ColumnName="TransactionName" />
+          <ScalarProperty Name="IdType" ColumnName="IdType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

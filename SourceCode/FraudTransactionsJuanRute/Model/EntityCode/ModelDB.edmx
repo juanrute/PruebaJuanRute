@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FinancialTXModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="IdTxTypeFK" Type="int" Nullable="false" />
+          <Property Name="NameOrig" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OldbalanceOrg" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Amount" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NewbalanceOrig" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NameDest" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OldBalanceDest" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NewBalanceDest" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+          <Property Name="IsFraud" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransactionType">
+          <Key>
+            <PropertyRef Name="IdType" />
+          </Key>
+          <Property Name="IdType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Transactions_TransactionType">
+          <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="IdType" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="IdTxTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FinancialTXModelStoreContainer">
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Transactions_TransactionType" Association="Self.FK_Transactions_TransactionType">
+            <End Role="TransactionType" EntitySet="TransactionType" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FinancialTXModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FinancialTXEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Transactions" EntityType="FinancialTXModel.Transaction" />
+          <EntitySet Name="TransactionTypes" EntityType="FinancialTXModel.TransactionType" />
+          <AssociationSet Name="FK_Transactions_TransactionType" Association="FinancialTXModel.FK_Transactions_TransactionType">
+            <End Role="TransactionType" EntitySet="TransactionTypes" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="IdTxTypeFK" Type="Int32" Nullable="false" />
+          <Property Name="NameOrig" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OldbalanceOrg" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="NewbalanceOrig" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="NameDest" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OldBalanceDest" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="NewBalanceDest" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsFraud" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TransactionType" Relationship="FinancialTXModel.FK_Transactions_TransactionType" FromRole="Transaction" ToRole="TransactionType" />
+        </EntityType>
+        <EntityType Name="TransactionType">
+          <Key>
+            <PropertyRef Name="IdType" />
+          </Key>
+          <Property Name="IdType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Transactions" Relationship="FinancialTXModel.FK_Transactions_TransactionType" FromRole="TransactionType" ToRole="Transaction" />
+        </EntityType>
+        <Association Name="FK_Transactions_TransactionType">
+          <End Type="FinancialTXModel.TransactionType" Role="TransactionType" Multiplicity="1" />
+          <End Type="FinancialTXModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="IdType" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="IdTxTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FinancialTXModelStoreContainer" CdmEntityContainer="FinancialTXEntities">
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="FinancialTXModel.Transaction">
+              <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="IsFraud" ColumnName="IsFraud" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="NewBalanceDest" ColumnName="NewBalanceDest" />
+                <ScalarProperty Name="OldBalanceDest" ColumnName="OldBalanceDest" />
+                <ScalarProperty Name="NameDest" ColumnName="NameDest" />
+                <ScalarProperty Name="NewbalanceOrig" ColumnName="NewbalanceOrig" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="OldbalanceOrg" ColumnName="OldbalanceOrg" />
+                <ScalarProperty Name="NameOrig" ColumnName="NameOrig" />
+                <ScalarProperty Name="IdTxTypeFK" ColumnName="IdTxTypeFK" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionTypes">
+            <EntityTypeMapping TypeName="FinancialTXModel.TransactionType">
+              <MappingFragment StoreEntitySet="TransactionType">
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="TransactionName" ColumnName="TransactionName" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

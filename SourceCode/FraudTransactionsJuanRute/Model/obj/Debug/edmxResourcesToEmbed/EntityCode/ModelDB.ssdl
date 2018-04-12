@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinancialTXModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Transactions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Step" Type="int" Nullable="false" />
+    <Property Name="IdTxTypeFK" Type="int" Nullable="false" />
+    <Property Name="NameOrig" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="OldbalanceOrg" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Amount" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="NewbalanceOrig" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="NameDest" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="OldBalanceDest" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="NewBalanceDest" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+    <Property Name="IsFraud" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransactionType">
+    <Key>
+      <PropertyRef Name="IdType" />
+    </Key>
+    <Property Name="IdType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransactionName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Transactions_TransactionType">
+    <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="1" />
+    <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransactionType">
+        <PropertyRef Name="IdType" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="IdTxTypeFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FinancialTXModelStoreContainer">
+    <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Transactions_TransactionType" Association="Self.FK_Transactions_TransactionType">
+      <End Role="TransactionType" EntitySet="TransactionType" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
