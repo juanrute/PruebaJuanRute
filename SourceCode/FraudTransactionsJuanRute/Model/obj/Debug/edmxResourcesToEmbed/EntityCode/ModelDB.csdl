@@ -7,6 +7,9 @@
       <End Role="TransactionType" EntitySet="TransactionTypes" />
       <End Role="Transaction" EntitySet="Transactions" />
     </AssociationSet>
+    <FunctionImport Name="TransactionsSp" ReturnType="Collection(FinancialTXModel.TransactionsSp_Result)">
+      <Parameter Name="name" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="Transaction">
     <Key>
@@ -47,4 +50,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="TransactionsSp_Result">
+    <Property Type="Int32" Name="IdType" Nullable="false" />
+    <Property Type="String" Name="TransactionName" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="false" Precision="23" />
+  </ComplexType>
 </Schema>

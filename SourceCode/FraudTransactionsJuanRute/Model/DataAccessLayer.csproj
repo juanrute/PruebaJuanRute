@@ -67,12 +67,18 @@
     <Compile Include="EntityCode\Transaction.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityCode\TransactionsSp_Result.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityCode\TransactionType.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Facade.cs" />
-    <Compile Include="IFacade.cs" />
+    <Compile Include="ServiceStuff\Facade.cs" />
+    <Compile Include="ServiceStuff\IFacade.cs" />
+    <Compile Include="WebStuffs\Facade.cs" />
+    <Compile Include="WebStuffs\IFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceStuff\TransactionContract.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="EntityCode\ModelDB.edmx">
@@ -102,5 +108,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

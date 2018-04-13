@@ -12,6 +12,8 @@ namespace Model.EntityCode
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class FinancialTXEntities : DbContext
     {
@@ -27,5 +29,14 @@ namespace Model.EntityCode
     
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<TransactionType> TransactionTypes { get; set; }
+    
+        public virtual ObjectResult<TransactionsSp_Result> TransactionsSp(string name)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TransactionsSp_Result>("TransactionsSp", nameParameter);
+        }
     }
 }

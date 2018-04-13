@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FraudTransactionsJuanRute.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "Model\DataAccessLayer.csproj", "{0A4760F7-3974-40B1-9BC1-AAD68BC99D12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestAssistantService", "RestAssistantService\RestAssistantService.csproj", "{F20DCB1D-830E-40BD-965C-CFCFC08869D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0A4760F7-3974-40B1-9BC1-AAD68BC99D12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A4760F7-3974-40B1-9BC1-AAD68BC99D12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A4760F7-3974-40B1-9BC1-AAD68BC99D12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F20DCB1D-830E-40BD-965C-CFCFC08869D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F20DCB1D-830E-40BD-965C-CFCFC08869D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F20DCB1D-830E-40BD-965C-CFCFC08869D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F20DCB1D-830E-40BD-965C-CFCFC08869D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

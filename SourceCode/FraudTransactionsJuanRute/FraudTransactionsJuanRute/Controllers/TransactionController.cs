@@ -12,7 +12,8 @@ namespace FraudTransactionsJuanRute.Controllers
     {
         private readonly IFacade fc;
 
-        public TransactionController(IFacade _facade) {
+        public TransactionController(IFacade _facade)
+        {
             this.fc = _facade;
         }
 

@@ -1,0 +1,106 @@
+﻿@model Model.EntityCode.Transaction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Transaction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Step)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Step)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOrig)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameOrig)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OldbalanceOrg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OldbalanceOrg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NewbalanceOrig)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NewbalanceOrig)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameDest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameDest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OldBalanceDest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OldBalanceDest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NewBalanceDest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NewBalanceDest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsFraud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsFraud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionType.TransactionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionType.TransactionName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

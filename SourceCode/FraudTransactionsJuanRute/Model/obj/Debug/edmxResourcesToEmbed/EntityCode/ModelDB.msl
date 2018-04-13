@@ -28,5 +28,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="TransactionsSp" FunctionName="FinancialTXModel.Store.TransactionsSp">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinancialTXModel.TransactionsSp_Result">
+          <ScalarProperty Name="IdType" ColumnName="IdType" />
+          <ScalarProperty Name="TransactionName" ColumnName="TransactionName" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
