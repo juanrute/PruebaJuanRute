@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using FraudTransactionsJuanRute.Business;
+using Model;
 using Model.EntityCode;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,8 @@ namespace FraudTransactionsJuanRute.Controllers
             if (!ModelState.IsValid) {
                 return View();
             }
-            fc.SaveTransaction(t);
+            RecalculateBalance rec = new RecalculateBalance();            
+            fc.SaveTransaction(rec.FillTransaction(t));
             return RedirectToAction("Index");
         }
 

@@ -69,3 +69,4 @@ C:\Users\ASUS\Desktop\PruebaZemoga\PruebaJuanRute\SourceCode\FraudTransactionsJu
 C:\Users\ASUS\Desktop\PruebaZemoga\PruebaJuanRute\SourceCode\FraudTransactionsJuanRute\RestAssistantService\bin\EntityFramework.xml
 C:\Users\ASUS\Desktop\PruebaZemoga\PruebaJuanRute\SourceCode\FraudTransactionsJuanRute\RestAssistantService\bin\EntityFramework.SqlServer.dll
 C:\Users\ASUS\Desktop\PruebaZemoga\PruebaJuanRute\SourceCode\FraudTransactionsJuanRute\RestAssistantService\bin\EntityFramework.SqlServer.xml
+C:\Users\ASUS\Desktop\PruebaZemoga\PruebaJuanRute\SourceCode\FraudTransactionsJuanRute\RestAssistantService\bin\XmlDocument.xml
